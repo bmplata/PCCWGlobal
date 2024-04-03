@@ -54,9 +54,13 @@ exports.createGreeting = (greet, greeting) => {
 };
 
 
-exports.setDefaults = (defaults) => (object) => {
-  Object.entries(defaults).forEach(([key, value]) => {
-      object[key] = (key in object) ? object[key] : value;
+exports.setDefaults = (defaults) => 
+(object) => {
+  Object.entries(defaults)
+  .forEach(([key, value]) => {
+    // Check if key of default does not exist in object
+    // if true, set the default
+      !(key in object) && (object[key] = value);
   });
   return object;
 };
